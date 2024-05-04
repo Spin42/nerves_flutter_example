@@ -42,16 +42,16 @@ defmodule NervesFlutterExample.MixProject do
       # Dependencies for all targets except :host
       {:nerves_pack, "~> 0.7.0", targets: @all_targets},
 
+      {:nerves_flutterpi, github: "Spin42/nerves_flutterpi"},
       # Dependencies for specific targets
       # NOTE: It's generally low risk and recommended to follow minor version
       # bumps to Nerves systems. Since these include Linux kernel and Erlang
       # version updates, please review their release notes in case
       # changes to your application are needed.
       {:nerves_system_flutter_rpi4,
-	path: "../nerves_system_flutter_rpi4",
-	runtime: false,
-	targets: :nerves_system_flutter_rpi4,
-	nerves: [compile: true]
+	      github: "Spin42/nerves_system_flutter_rpi4",
+	      runtime: false,
+	      targets: :nerves_system_flutter_rpi4,
       }
     ]
   end

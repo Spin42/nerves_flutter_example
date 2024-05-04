@@ -32,6 +32,9 @@ defmodule NervesFlutterExample.Application do
 
   def children(_target) do
     [
+      {NervesFlutterpi,
+        flutter_app_dir: "/var/flutter_assets",
+        name: :flutterpi}
       # Children for all targets except host
       # Starts a worker by calling: NervesFlutterExample.Worker.start_link(arg)
       # {NervesFlutterExample.Worker, arg},
