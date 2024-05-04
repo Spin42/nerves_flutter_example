@@ -1,33 +1,17 @@
 # NervesFlutterExample
 
-**TODO: Add description**
-
-## Targets
-
-Nerves applications produce images for hardware targets based on the
-`MIX_TARGET` environment variable. If `MIX_TARGET` is unset, `mix` builds an
-image that runs on the host (e.g., your laptop). This is useful for executing
-logic tests, running utilities, and debugging. Other targets are represented by
-a short name like `rpi3` that maps to a Nerves system image for that platform.
-All of this logic is in the generated `mix.exs` and may be customized. For more
-information about targets see:
-
-https://hexdocs.pm/nerves/supported-targets.html
+A basic flutter demo using:
+- An experimental custom system with flutter running on nerves (https://github.com/Spin42/nerves_system_flutter_rpi4)
+- Using experimental nerves_flutterpi launcher so flutter app runs at boot (https://github.com/Spin42/nerves_flutterpi)
 
 ## Getting Started
 
-To start your Nerves app:
-  * `export MIX_TARGET=my_target` or prefix every command with
-    `MIX_TARGET=my_target`. For example, `MIX_TARGET=rpi3`
+To use this demo:
+  * `export MIX_TARGET=nerves_system_flutter_rpi4`
   * Install dependencies with `mix deps.get`
   * Create firmware with `mix firmware`
-  * Burn to an SD card with `mix burn`
+  * Burn to an SD card with `mix burn` or upload to existing nerves instance with `mix upload`
 
-## Learn more
+## Disclaimer
 
-  * Official docs: https://hexdocs.pm/nerves/getting-started.html
-  * Official website: https://nerves-project.org/
-  * Forum: https://elixirforum.com/c/nerves-forum
-  * Elixir Slack #nerves channel: https://elixir-slack.community/
-  * Elixir Discord #nerves channel: https://discord.gg/elixir
-  * Source: https://github.com/nerves-project/nerves
+This is very early stage and not ready for production yet.
