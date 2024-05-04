@@ -12,6 +12,12 @@ To use this demo:
   * Create firmware with `mix firmware`
   * Burn to an SD card with `mix burn` or upload to existing nerves instance with `mix upload`
 
+To make changes to the flutter app:
+  * The flutter app is in the `ui` folder
+  * You need to build the app with `flutterpi_tool build --arch=arm64 --release`
+  * Then you need to place the `flutter_assets` folder somewhere in your `rootfs_overlay` (`/var/flutter_assets` for instance)
+  * Then rebuild the firmware and burn or upload
+
 ## Disclaimer
 
 This is very early stage and not ready for production yet.
