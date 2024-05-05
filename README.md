@@ -15,7 +15,7 @@ To use this demo:
 To make changes to the flutter app:
   * The flutter app is in the `ui` folder
   * You need to build the app with `flutterpi_tool build --arch=arm64 --release`
-  * Then you need to place the `flutter_assets` folder somewhere in your `rootfs_overlay` (`/var/flutter_assets` for instance)
+  * Then you need to place the `flutter_assets` folder somewhere in your `rootfs_overlay` (`/var/flutter_assets` for instance TODO: move to application's priv directory)
   * Then rebuild the firmware and burn or upload
 
 ## Disclaimer
