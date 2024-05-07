@@ -4,19 +4,24 @@ A basic flutter demo using:
 - An experimental custom system with flutter running on nerves (https://github.com/Spin42/nerves_system_flutter_rpi4)
 - Using experimental nerves_flutterpi launcher so flutter app runs at boot (https://github.com/Spin42/nerves_flutterpi)
 
+
+## Dependencies
+  * Flutterpi tool (https://github.com/ardera/flutterpi_tool)
+  * Flutter (https://docs.flutter.dev/get-started/install)
+
 ## Getting Started
 
-To use this demo:
+To setup the firmware:
+  * `cd firmware`
   * `export MIX_TARGET=nerves_system_flutter_rpi4`
   * Install dependencies with `mix deps.get`
-  * Create firmware with `mix firmware`
-  * Burn to an SD card with `mix burn` or upload to existing nerves instance with `mix upload`
 
 To make changes to the flutter app:
-  * The flutter app is in the `ui` folder
-  * You need to build the app with `flutterpi_tool build --arch=arm64 --release`
-  * Then you need to place the `flutter_assets` folder somewhere in your `rootfs_overlay` (`/var/flutter_assets` for instance TODO: move to application's priv directory)
-  * Then rebuild the firmware and burn or upload
+  * `cd frontend`
+  * Launch app on host with `flutter run`
+
+To build:
+  * Simply execute `./build.sh`
 
 ## Disclaimer
 
