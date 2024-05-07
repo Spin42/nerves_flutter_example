@@ -6,8 +6,8 @@ A basic flutter demo using:
 
 
 ## Dependencies
-  * Flutterpi tool (https://github.com/ardera/flutterpi_tool)
   * Flutter (https://docs.flutter.dev/get-started/install)
+  * Flutterpi tool (https://pub.dev/packages/flutterpi_tool)
 
 ## Getting Started
 
