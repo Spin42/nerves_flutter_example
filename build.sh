@@ -1,5 +1,7 @@
 # /bin/sh!
 
+set -e
+
 cd frontend
 flutterpi_tool build --arch=arm64 --release
 cd ..
