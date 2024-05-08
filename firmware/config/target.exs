@@ -94,12 +94,12 @@ config :mdns_lite,
 
 # import_config "#{Mix.target()}.exs"
 
-config :nerves_flutter_example_backend, BackendWeb.Endpoint,
+config :backend, BackendWeb.Endpoint,
   url: [host: "nerves.local"],
   http: [port: 80],
   cache_static_manifest: "priv/static/cache_manifest.json",
-  secret_key_base: "HEY05EB1dFVSu6KykKHuS4rQPQzSHv4F7mGVB/gnDLrIu75wE/ytBXy2TaL3A6RA",
-  live_view: [signing_salt: "AAAABjEyERMkxgDh"],
+  secret_key_base: "zUJ/JoaHMVH4QaNPx1A7eYIjijwU9K2AaAoux5G959ejazs9ortSZG036MOqCPqf",
+  live_view: [signing_salt: "mtoSfwHI"],
   check_origin: false,
   render_errors: [view: BackendWeb.ErrorView, accepts: ~w(html json), layout: false],
   pubsub_server: Ui.PubSub,
