@@ -2,13 +2,10 @@ import Config
 
 # Configure your database
 config :backend, Backend.Repo,
-  username: "postgres",
-  password: "postgres",
-  hostname: "localhost",
-  database: "backend_dev",
+  database: Path.expand("../backend_dev.db", Path.dirname(__ENV__.file)),
+  pool_size: 5,
   stacktrace: true,
-  show_sensitive_data_on_connection_error: true,
-  pool_size: 10
+  show_sensitive_data_on_connection_error: true
 
 # For development, we disable any cache and enable
 # debugging and code reloading.
@@ -23,11 +20,7 @@ config :backend, BackendWeb.Endpoint,
   check_origin: false,
   code_reloader: true,
   debug_errors: true,
-  secret_key_base: "zUJ/JoaHMVH4QaNPx1A7eYIjijwU9K2AaAoux5G959ejazs9ortSZG036MOqCPqf",
-  watchers: [
-    esbuild: {Esbuild, :install_and_run, [:backend, ~w(--sourcemap=inline --watch)]},
-    tailwind: {Tailwind, :install_and_run, [:backend, ~w(--watch)]}
-  ]
+  secret_key_base: "zUJ/JoaHMVH4QaNPx1A7eYIjijwU9K2AaAoux5G959ejazs9ortSZG036MOqCPqf"
 
 # ## SSL Support
 #
@@ -52,16 +45,6 @@ config :backend, BackendWeb.Endpoint,
 # configured to run both http and https servers on
 # different ports.
 
-# Watch static and templates for browser reloading.
-config :backend, BackendWeb.Endpoint,
-  live_reload: [
-    patterns: [
-      ~r"priv/static/(?!uploads/).*(js|css|png|jpeg|jpg|gif|svg)$",
-      ~r"priv/gettext/.*(po)$",
-      ~r"lib/backend_web/(controllers|live|components)/.*(ex|heex)$"
-    ]
-  ]
-
 # Enable dev routes for dashboard and mailbox
 config :backend, dev_routes: true
 
@@ -74,9 +57,3 @@ config :phoenix, :stacktrace_depth, 20
 
 # Initialize plugs at runtime for faster development compilation
 config :phoenix, :plug_init_mode, :runtime
-
-config :phoenix_live_view,
-  # Include HEEx debug annotations as HTML comments in rendered markup
-  debug_heex_annotations: true,
-  # Enable helpful, but potentially expensive runtime checks
-  enable_expensive_runtime_checks: true
