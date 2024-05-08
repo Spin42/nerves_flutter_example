@@ -1,5 +1,15 @@
 import Config
 
+# Configure your database
+config :backend, Backend.Repo,
+  username: "postgres",
+  password: "postgres",
+  hostname: "localhost",
+  database: "backend_dev",
+  stacktrace: true,
+  show_sensitive_data_on_connection_error: true,
+  pool_size: 10
+
 # For development, we disable any cache and enable
 # debugging and code reloading.
 #
@@ -13,7 +23,7 @@ config :backend, BackendWeb.Endpoint,
   check_origin: false,
   code_reloader: true,
   debug_errors: true,
-  secret_key_base: "FMcq9x4SNdiRO1MK7HEBfyoQ/Ulbet9UGCdt41PNQKuXAmNcjH+yutdyi20dEeIO",
+  secret_key_base: "zUJ/JoaHMVH4QaNPx1A7eYIjijwU9K2AaAoux5G959ejazs9ortSZG036MOqCPqf",
   watchers: [
     esbuild: {Esbuild, :install_and_run, [:backend, ~w(--sourcemap=inline --watch)]},
     tailwind: {Tailwind, :install_and_run, [:backend, ~w(--watch)]}
@@ -70,6 +80,3 @@ config :phoenix_live_view,
   debug_heex_annotations: true,
   # Enable helpful, but potentially expensive runtime checks
   enable_expensive_runtime_checks: true
-
-# Disable swoosh api client as it is only required for production adapters.
-config :swoosh, :api_client, false

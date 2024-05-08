@@ -7,7 +7,7 @@ defmodule BackendWeb.Endpoint do
   @session_options [
     store: :cookie,
     key: "_backend_key",
-    signing_salt: "IsQR0uc3",
+    signing_salt: "HuizzyLb",
     same_site: "Lax"
   ]
 
@@ -31,6 +31,7 @@ defmodule BackendWeb.Endpoint do
     socket "/phoenix/live_reload/socket", Phoenix.LiveReloader.Socket
     plug Phoenix.LiveReloader
     plug Phoenix.CodeReloader
+    plug Phoenix.Ecto.CheckRepoStatus, otp_app: :backend
   end
 
   plug Phoenix.LiveDashboard.RequestLogger,

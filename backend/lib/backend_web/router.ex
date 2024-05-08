@@ -25,7 +25,7 @@ defmodule BackendWeb.Router do
   #   pipe_through :api
   # end
 
-  # Enable LiveDashboard and Swoosh mailbox preview in development
+  # Enable LiveDashboard in development
   if Application.compile_env(:backend, :dev_routes) do
     # If you want to use the LiveDashboard in production, you should put
     # it behind authentication and allow only admins to access it.
@@ -38,7 +38,6 @@ defmodule BackendWeb.Router do
       pipe_through :browser
 
       live_dashboard "/dashboard", metrics: BackendWeb.Telemetry
-      forward "/mailbox", Plug.Swoosh.MailboxPreview
     end
   end
 end
