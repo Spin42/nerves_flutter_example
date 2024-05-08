@@ -11,7 +11,6 @@ defmodule NervesFlutterExample.Application do
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: NervesFlutterExample.Supervisor]
 
-    Process.sleep(10_000)
     children =
       [
         # Children for all targets
