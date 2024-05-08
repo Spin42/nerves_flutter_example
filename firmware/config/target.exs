@@ -93,6 +93,16 @@ config :mdns_lite,
 # Uncomment to use target specific configurations
 
 # import_config "#{Mix.target()}.exs"
+config :backend, Backend.Repo,
+  database: "/data/backend/backend.db",
+  pool_size: 5,
+  stacktrace: true,
+  show_sensitive_data_on_connection_error: true
+
+# Configures the endpoint
+config :backend,
+  ecto_repos: [Backend.Repo],
+  generators: [timestamp_type: :utc_datetime]
 
 config :backend, BackendWeb.Endpoint,
   url: [host: "nerves.local"],
