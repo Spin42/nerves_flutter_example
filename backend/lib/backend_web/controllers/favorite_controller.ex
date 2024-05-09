@@ -12,11 +12,20 @@ defmodule BackendWeb.FavoriteController do
   end
 
   def create(conn, %{"wordpair" => wordpair}) do
-    with {:ok, %Favorite{} = favorite} <- Favorites.create_favorite(%{wordpair: wordpair}) do
-      conn
-      |> put_status(:created)
-      |> put_resp_header("location", ~p"/api/favorites/#{favorite}")
-      |> render(:show, favorite: favorite)
+    case Favorites.get_favorite_by_wordpair!(wordpair) do
+      favorite = %Favorite{} ->
+        {:ok, favorite} = Favorites.delete_favorite(favorite)
+        conn
+        |> put_status(:accepted)
+        |> put_resp_header("location", ~p"/api/favorites/#{favorite}")
+        |> render(:show, favorite: favorite)
+      nil ->
+        with {:ok, %Favorite{} = favorite} <- Favorites.create_favorite(%{wordpair: wordpair}) do
+          conn
+          |> put_status(:created)
+          |> put_resp_header("location", ~p"/api/favorites/#{favorite}")
+          |> render(:show, favorite: favorite)
+        end
     end
   end
 

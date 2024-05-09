@@ -37,6 +37,8 @@ defmodule Backend.Favorites do
   """
   def get_favorite!(id), do: Repo.get!(Favorite, id)
 
+  def get_favorite_by_wordpair!(wordpair), do: Repo.get_by(Favorite, wordpair: wordpair)
+
   @doc """
   Creates a favorite.
 
