@@ -21,4 +21,8 @@ defmodule BackendWeb.FavoriteJSON do
       wordpair: favorite.wordpair
     }
   end
+
+  defp data(nil = favorite) do
+    %{}
+  end
 end

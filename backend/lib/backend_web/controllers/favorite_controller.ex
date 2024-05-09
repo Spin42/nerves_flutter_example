@@ -6,7 +6,12 @@ defmodule BackendWeb.FavoriteController do
 
   action_fallback BackendWeb.FallbackController
 
-  def index(conn, _params) do
+  def index(conn, %{"wordpair" => wordpair}) do
+    favorite = Favorites.get_favorite_by_wordpair!(wordpair)
+    render(conn, :show, favorite: favorite)
+  end
+
+  def index(conn, %{}) do
     favorites = Favorites.list_favorites()
     render(conn, :index, favorites: favorites)
   end
