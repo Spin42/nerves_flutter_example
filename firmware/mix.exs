@@ -43,6 +43,7 @@ defmodule NervesFlutterExample.MixProject do
       {:nerves_pack, "~> 0.7.0", targets: @all_targets},
       {:backend, path: "../backend", targets: @all_targets, env: Mix.env()},
       {:nerves_flutterpi, github: "Spin42/nerves_flutterpi"},
+      {:ecto_sqlite3, "~> 0.13"},
       # Dependencies for specific targets
       # NOTE: It's generally low risk and recommended to follow minor version
       # bumps to Nerves systems. Since these include Linux kernel and Erlang

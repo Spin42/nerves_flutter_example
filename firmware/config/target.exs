@@ -94,6 +94,7 @@ config :mdns_lite,
 
 # import_config "#{Mix.target()}.exs"
 config :backend, Backend.Repo,
+  adapter: Ecto.Adapters.SQLite3,
   database: "/data/backend/backend.db",
   pool_size: 5,
   stacktrace: true,
@@ -105,11 +106,9 @@ config :backend,
   generators: [timestamp_type: :utc_datetime]
 
 config :backend, BackendWeb.Endpoint,
-  url: [host: "nerves.local"],
-  http: [port: 80],
-  cache_static_manifest: "priv/static/cache_manifest.json",
+  url: [host: "localhost"],
+  http: [port: 4000],
   secret_key_base: "zUJ/JoaHMVH4QaNPx1A7eYIjijwU9K2AaAoux5G959ejazs9ortSZG036MOqCPqf",
-  live_view: [signing_salt: "mtoSfwHI"],
   check_origin: false,
   render_errors: [view: BackendWeb.ErrorView, accepts: ~w(html json), layout: false],
   pubsub_server: Ui.PubSub,
