@@ -16,7 +16,7 @@ Future <List<Favorite>> fetchFavorites() async {
   }
 }
 
-Future <Favorite> createFavorite(String wordpair) async {
+Future <Favorite> createOrDeleteFavorite(String wordpair) async {
   final response = await http.post(
     Uri.parse('$apiUrl/favorites'),
     headers: <String, String>{
@@ -26,8 +26,8 @@ Future <Favorite> createFavorite(String wordpair) async {
       'wordpair': wordpair,
     }),
   );
-  if (response.statusCode == 201) {
-    return Favorite.fromJson(jsonDecode(response.body) as Map<String, dynamic>);
+  if (response.statusCode == 201 || response.statusCode == 202) {
+    return Favorite.fromJson(jsonDecode(response.body)["data"] as Map<String, dynamic>);
   } else {
     throw Exception('Failed to create Favorite.');
   }

@@ -13,11 +13,7 @@ class MyAppState extends ChangeNotifier {
   var favorites = <WordPair>[];
 
   void toggleFavorite() {
-    if(favorites.contains(current)){
-      favorites.remove(current);
-    } else {
-      createFavorite(current.asLowerCase);
-    }
+    createOrDeleteFavorite(current.asLowerCase);
     notifyListeners();
   }
 }
