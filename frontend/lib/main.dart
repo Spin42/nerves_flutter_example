@@ -3,6 +3,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 import 'package:google_fonts/google_fonts.dart';
 
 void main() {
@@ -59,6 +61,31 @@ class MyAppState extends ChangeNotifier {
     notifyListeners();
   }
 }
+
+class Favorite {
+  final int id;
+  final String wordpair;
+
+  const Favorite({
+    required this.id,
+    required this.wordpair,
+  });
+
+  factory Favorite.fromJson(Map<String, dynamic> json){
+    return switch(json){
+      {
+        'id': int id,
+        'wordpair': String wordpair
+      } =>
+        Favorite(
+          id: id,
+          wordpair: wordpair
+        ),
+        _ => throw const FormatException("Failed to load favorite")
+    };
+  }
+}
+
 
 class BigCard extends StatelessWidget {
   const BigCard({
@@ -143,28 +170,56 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-class FavoritesPage extends StatelessWidget {
+class FavoritesPage extends StatefulWidget {
+  @override
+
+  State<FavoritesPage> createState() =>
+  _FavoritesPageState();
+}
+
+class _FavoritesPageState extends State<FavoritesPage> {
+
+  late Future<List<Favorite>> favorites = fetchFavorites();
+
+  Future <List<Favorite>> fetchFavorites() async {
+    final response = await http
+        .get(Uri.parse("http://localhost:4000/api/favorites"));
+    final List body = json.decode(response.body)["data"];
+    return body.map((favorite) => Favorite.fromJson(favorite)).toList();
+  }
+
   Widget build(BuildContext context){
-    var appState = context.watch<MyAppState>();
-
-    if(appState.favorites.isEmpty){
-      return Center(child: Text("No favorites yet"));
-    };
-
-    return ListView(
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(20),
-          child: Text('You have ${appState.favorites.length} favorites'),
-        ),
-        for (var pair in appState.favorites)
-          ListTile(
-            leading: Icon(Icons.favorite),
-            title: Text(pair.asLowerCase),
-          )
-      ],
+    return Scaffold(
+      body: Center(
+        child: FutureBuilder<List<Favorite>>(
+          future: favorites,
+          builder: (context, snapshot){
+            if(snapshot.connectionState == ConnectionState.waiting){
+              return const CircularProgressIndicator();
+            } else if (snapshot.hasData) {
+              final finalfavorites = snapshot.data!;
+              return buildFavorites(finalfavorites);
+            } else {
+              return Center(child: Text("No favorites yet"));
+            }
+          }
+        )
+      )
     );
   }
+}
+
+Widget buildFavorites(List<Favorite> favorites) {
+  return ListView.builder(
+      itemCount: favorites.length,
+      itemBuilder: (context, index){
+        final favorite = favorites[index];
+        return ListTile(
+            leading: Icon(Icons.favorite),
+            title: Text(favorite.wordpair),
+          );
+      }
+    );
 }
 
 class GeneratorPage extends StatelessWidget {
