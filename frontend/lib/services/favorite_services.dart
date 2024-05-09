@@ -16,6 +16,17 @@ Future <List<Favorite>> fetchFavorites() async {
   }
 }
 
+Future <Favorite> getFavorite(String wordpair) async {
+  final response = await http.get(
+    Uri.parse("$apiUrl/favorites?wordpair=$wordpair")
+  );
+  if(response.statusCode == 200) {
+    return Favorite.fromJson(jsonDecode(response.body)["data"] as Map<String, dynamic>);
+  } else {
+    throw Exception("Failed to fetch Favorite.");
+  }
+}
+
 Future <Favorite> createOrDeleteFavorite(String wordpair) async {
   final response = await http.post(
     Uri.parse('$apiUrl/favorites'),

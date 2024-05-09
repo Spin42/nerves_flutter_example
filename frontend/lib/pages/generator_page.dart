@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../app_state.dart';
 import '../components/bigcard.dart';
+import '../services/favorite_services.dart';
 
 class GeneratorPage extends StatelessWidget {
   @override
@@ -10,7 +11,7 @@ class GeneratorPage extends StatelessWidget {
     var pair = appState.current;
 
     IconData icon;
-    if(appState.favorites.contains(pair)){
+    if(appState.currentIsFavorite){
       icon = Icons.favorite;
     } else {
       icon = Icons.favorite_outline;

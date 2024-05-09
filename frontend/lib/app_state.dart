@@ -5,15 +5,32 @@ import './services/favorite_services.dart';
 class MyAppState extends ChangeNotifier {
   var current = WordPair.random();
 
-  void getNext(){
+  var currentIsFavorite = false;
+
+  Future<void> getNext() async {
     current = WordPair.random();
-    notifyListeners();
+    setFavoriteStatus().then((value) =>
+      notifyListeners()
+    );
   }
 
-  var favorites = <WordPair>[];
-
   void toggleFavorite() {
-    createOrDeleteFavorite(current.asLowerCase);
-    notifyListeners();
+    createOrDeleteFavorite(current.asLowerCase).then((value) => {
+      setFavoriteStatus().then((value) =>
+        notifyListeners()
+      ),
+    });
+  }
+
+  Future<void> setFavoriteStatus() async {
+    try {
+      await getFavorite(current.asLowerCase).then(
+        (favorite) => {
+          currentIsFavorite = true
+        }
+      );
+    } catch (_) {
+      currentIsFavorite = false;
+    }
   }
 }
