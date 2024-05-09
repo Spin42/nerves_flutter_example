@@ -22,7 +22,7 @@ defmodule BackendWeb.FavoriteJSON do
     }
   end
 
-  defp data(nil = favorite) do
+  defp data(nil = _favorite) do
     %{}
   end
 end
