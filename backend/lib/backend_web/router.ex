@@ -7,7 +7,7 @@ defmodule BackendWeb.Router do
 
   scope "/api", BackendWeb do
     pipe_through :api
-    resources "/favorites", FavoriteController, except: [:new, :edit, :create, :update]
+    resources "/favorites", FavoriteController, except: [:new, :edit, :update]
   end
 
   # Other scopes may use custom stacks.

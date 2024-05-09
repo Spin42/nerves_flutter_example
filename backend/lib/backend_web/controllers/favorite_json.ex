@@ -18,7 +18,7 @@ defmodule BackendWeb.FavoriteJSON do
   defp data(%Favorite{} = favorite) do
     %{
       id: favorite.id,
-      pairword: favorite.pairword
+      wordpair: favorite.wordpair
     }
   end
 end

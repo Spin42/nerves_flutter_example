@@ -3,7 +3,7 @@ defmodule Backend.Favorites.Favorite do
   import Ecto.Changeset
 
   schema "favorites" do
-    field :pairword, :string
+    field :wordpair, :string
 
     timestamps(type: :utc_datetime)
   end
@@ -11,7 +11,7 @@ defmodule Backend.Favorites.Favorite do
   @doc false
   def changeset(favorite, attrs) do
     favorite
-    |> cast(attrs, [:pairword])
-    |> validate_required([:pairword])
+    |> cast(attrs, [:wordpair])
+    |> validate_required([:wordpair])
   end
 end
