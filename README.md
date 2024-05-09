@@ -2,7 +2,7 @@
 
 A basic flutter demo using:
 - An experimental custom system with flutter running on nerves (https://github.com/Spin42/nerves_system_flutter_rpi4)
-- Using a basic flutterpi launcher to start the app at boot (https://github.com/Spin42/nerves_flutterpi)
+- A basic flutterpi launcher to start the app at boot (https://github.com/Spin42/nerves_flutterpi)
 
 ## About
 This is an implementation of the first Codelab you can find on the Flutter documentation, with the twist that all state is fetched from a backend app written in Phoenix.
